@@ -1,65 +1,86 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <!-- Title,logo,Theme,Google-Font -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>Cordinets</title>
+    <link rel="icon" sizes="192x192" href="images/logo-nestimatic.png">
+    <meta name="theme-color" content="#2196f3">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <meta name="keywords" content="cordinets,coordinates,noticeboard,classwork,mitaoe,maeer,pune,dhaneshpawar,students,teachers,crackmi">
+    
+    <!-------------------------------- Styles ------------------------------------------>
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/index.css">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.14.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.14.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.14.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.14.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.14.1/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    <!-------------------------------- Javascript -------------------------------------->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/index.js"></script>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
   </head>
+  
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    <!-- Net connectin checking -->
+    <div class="net-connection">
+      <p id="ooUpdate" style="text-align: center"></p>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    
+    <div class="main">
+      <center>
+        
+        <h1 id="floatLogo" style="display:none;">  <br>Let's Connect</h1>
+        <p class="tagline" id="tagline" style="display:none;">Connect the dots and box game !</p>
+        <div class="blue-line"></div>
+      </center>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      <center><div class="blue-line"></div></center>
+      
+      <div id="sign-in-div" style="display:none;" id="sigingooglebutton">
+        <center>
+          <p>To play this game, you just need to </p>
+          
+            <div class='g-sign-in-button' id="sigingooglebutton">
+              <div class=content-wrapper>
+                <div class='logo-wrapper'>
+                  <img src='https://developers.google.com/identity/images/g-logo.png'>
+                </div>  
+                <a href="/auth/google">
+                  <span class='text-container'><span>Sign in with Google</span></span>
 
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+                </a>
+              </div>  
+            </div>
+        </center>    
+      </div><br><br>
+    </div>
+
+
+    <div id="popup1" class="overlay" style="display:none;">
+        <div class="popup">
+            <h2>Terms and Privacy</h2>
+            <div class="content">
+              Are you agree to our
+                <a href="https://cordinets.com/termsandconditions" target="_blank">terms & conditions</a> and <a href="https://cordinets.com/privacypolicy" target="_blank">privacy policy</a> ?
+        <br><br>
+
+        <center>
+                <a href="/auth/google"> <button>Yes, Continue</button> </a>    
+        </center>
+
+          
+        </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+    <!-- for dev purpose -->
+    <!-- <form action="devsignin" method="POST">
+      <input type="text" placeholder="your email" name="email">
+      <input type="submit" >
+    </form> -->
+    
+    <script src="js/common.js"></script>   
+</body>
 </html>
