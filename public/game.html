@@ -8,12 +8,38 @@
             <link rel="stylesheet" type="text/css" media="screen" href="styles/game.css"/>
     
     <style>
-                canvas{
+
+@media screen and (min-width : 800px)
+{
+
+    canvas{
+            margin-left: -40%;
+            margin-top: 30%;
+            border-radius: 2%;
+            width: 180%;
+        }
+}
+@media screen and (max-width : 800px)
+{
+    canvas{
             margin-left: 30%;
             margin-top: 10%;
             border-radius: 2%;
         }
+}
 
+button
+{
+    color: white;
+    background:#2196f3;
+    border: 3px solid white;
+    border-radius: 5px;
+    margin: 8px;
+    padding: 10px;
+    margin-top: 50px;
+    margin-bottom: -50px;
+    font-size: 18px;
+}
     </style>
 
             <!-------------------------------- Javascript -------------------------------------->
@@ -23,7 +49,8 @@
 </head>
 
 <body>
-       
+    
+
     <script>
         "use strict";
 
@@ -624,14 +651,65 @@
                 return false;
             }
         }
+        
     </script>
-            <p style="display: inline;"> You are signed in with - <p style="display: inline;" id="signingoogle">Loading...</p>
-        </p>
+    <br><br><br>
+        <center>
+            <p style="display: inline;color: white;"> You are signed in with - <p style="display: inline;color: white;" id="signingoogle">Loading...</p>        </p>
 
-            <a href="/signout">
-                <button>Sign OUT</button>
+                <button onclick="signoutme()">Sign OUT</button>
+
+            <a href="/ranking.html">
+                <button>See Ranking</button>
             </a>
+
+        </center>
     
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAzNBCGih8slQeXsHeDS_YAeTZW8oU1pqY",
+    authDomain: "connect-game-5.firebaseapp.com",
+    databaseURL: "https://connect-game-5.firebaseio.com",
+    projectId: "connect-game-5",
+    storageBucket: "connect-game-5.appspot.com",
+    messagingSenderId: "540871805010",
+    appId: "1:540871805010:web:1690d63064fa558985f78b",
+    measurementId: "G-9791609WDB"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  var user = localStorage.getItem("user");
+  if(user == null)
+  {
+    window.location.replace("/")
+  }
+  console.log("we got user = ")
+  console.log(user)
+  document.getElementById("signingoogle").innerHTML = user; 
+  function signoutme(){
+    firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}).catch(function(error) {
+  // An error happened.
+});
+localStorage.setItem("user", null);
+window.location.replace("/")
+  }
+
+
+</script>
 </body>
 
 </html>

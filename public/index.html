@@ -43,10 +43,7 @@
                 <div class='logo-wrapper'>
                   <img src='https://developers.google.com/identity/images/g-logo.png'>
                 </div>  
-                <a href="/auth/google">
-                  <span class='text-container'><span>Sign in with Google</span></span>
-
-                </a>
+                  <span onclick="signinwithgoogle()" class='text-container'><span>Sign in with Google</span></span>
               </div>  
             </div>
         </center>    
@@ -54,22 +51,6 @@
     </div>
 
 
-    <div id="popup1" class="overlay" style="display:none;">
-        <div class="popup">
-            <h2>Terms and Privacy</h2>
-            <div class="content">
-              Are you agree to our
-                <a href="https://cordinets.com/termsandconditions" target="_blank">terms & conditions</a> and <a href="https://cordinets.com/privacypolicy" target="_blank">privacy policy</a> ?
-        <br><br>
-
-        <center>
-                <a href="/auth/google"> <button>Yes, Continue</button> </a>    
-        </center>
-
-          
-        </div>
-        </div>
-    </div>
     <br>
     <br>
     <br>
@@ -81,6 +62,59 @@
       <input type="submit" >
     </form> -->
     
-    <script src="js/common.js"></script>   
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAzNBCGih8slQeXsHeDS_YAeTZW8oU1pqY",
+    authDomain: "connect-game-5.firebaseapp.com",
+    databaseURL: "https://connect-game-5.firebaseio.com",
+    projectId: "connect-game-5",
+    storageBucket: "connect-game-5.appspot.com",
+    messagingSenderId: "540871805010",
+    appId: "1:540871805010:web:1690d63064fa558985f78b",
+    measurementId: "G-9791609WDB"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  const auth = firebase.auth();
+  const db = firebase.firestore(); 
+
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+  function signinwithgoogle()
+{
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+  console.log("we got user = ",user.email)
+  localStorage.setItem("user", user.email);
+  window.location.replace("https://connect-game-5.firebaseapp.com/game.html")
+  // ...
+}).catch(function(error) {
+  window.location.replace("https://connect-game-5.firebaseapp.com/game.html")
+  console.log(error)
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
+}
+</script>
 </body>
 </html>
